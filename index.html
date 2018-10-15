@@ -16,7 +16,7 @@
     bottom: 0;
     left: 0;
             padding: 10px;
-            background-color: rgba(140, 114, 114, .25);
+            background-color: rgba(213, 230, 251, 0.37);
             width:320px
         }
     </style>
@@ -68,10 +68,10 @@
 <script>
   //The accessToken is a default one from Mapbox. You can create unique ones for different maps that you work on. 
   //Change the style to your unique style url.
-mapboxgl.accessToken = 'pk.eyJ1IjoiYW5keS1ydXRrb3dza2kiLCJhIjoiWDJRMFVUWSJ9.iHl6Cf0M79wmHQlfP6Bk8Q';
+mapboxgl.accessToken = 'pk.eyJ1IjoicmNsZW1lbnQiLCJhIjoiY2lxYjMwMmVrMDNpcGZ2bTZkZW9nYWg2YyJ9.QYfNF4dxrBVzxbIF8xSyYw';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/andy-rutkowski/cjmyg19qb2t712rmq2pvldq00',
+    style: 'mapbox://styles/rclement/cjn9igv9t43y22rnrvzsw2vak',
     center: [-118.545829, 33.989976],
     minZoom: 9.5,
     maxZoom: 13,
@@ -94,16 +94,13 @@ map.on('load', function() {
         // added on the fly using `addSource`.
         map.setPaintProperty('HOLC1939', 'raster-opacity', parseInt(e.target.value, 10) / 100);
     });
- 
-  ({
-    
+  ({  
         "id": "HOLC1939",
         "source": {
             "type": "raster",
-            "url": "mapbox://andy-rutkowski.a0p1p0hr"
+            "url": "mapbox://rclement.36wzgfj9"
         },
         "type": "raster"
-    
     })
   
    map.addLayer
@@ -113,23 +110,23 @@ slider1.addEventListener('input', function(e) {
         // Adjust the layers opacity. layer here is arbitrary - this could
         // be another layer name found in your style or a custom layer
         // added on the fly using `addSource`.
-        map.setPaintProperty('Watts', 'raster-opacity', parseInt(e.target.value, 10) / 100);
+        map.setPaintProperty('WATTSCURFEW', 'raster-opacity', parseInt(e.target.value, 10) / 100);
         // Value indicator
     });
  });
   ({
     
-    "id":"Watts",
+    "id":"WATTSCURFEW",
         "source": {
             "type": "raster",
-            "url": "mapbox://andy-rutkowski.0tqu2dvy"
+            "url": "mapbox://rclement.3ur3gr2t"
         },
         "type": "raster"
      })
   //In this section you will just want to replace the layers name with whatever name you gave your GreenBook layer.
         map.on('click', function(e) {
   var features = map.queryRenderedFeatures(e.point, {
-    layers: ['47GreenBook'] // replace this with the name of the layer
+    layers: ['47greenbook'] // replace this with the name of the layer
   });
   if (!features.length) {
     return;
@@ -138,7 +135,7 @@ slider1.addEventListener('input', function(e) {
   var popup = new mapboxgl.Popup({ offset: [0, -15] })
     .setLngLat(feature.geometry.coordinates)
     .setHTML('<h3>' + feature.properties.Type + '</h3><p>' + feature.properties.Name + '</p>')
-    .setLngLat(feature.geometry.coordinates)
+  .setLngLat(feature.geometry.coordinates)
     .addTo(map);
 });
 
